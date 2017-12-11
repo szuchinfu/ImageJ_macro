@@ -1,22 +1,32 @@
-macro "MIP3stacks [F1]"{
-
+macro "MIP_4_slices [F1]"{
  Dialog.create("Merge Channels");
  Dialog.addString("Bottom stack:", "16");
  Dialog.show();
  BottomStack = parseInt(Dialog.getString())
  TopStack =  BottomStack+3
- 
+ // 
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
- //selectImage(id);
- //run("Slice Keeper", "first=BottomStack last=TopStack increment=1");
  selectImage(id);
  run("Z Project...", "start=BottomStack stop=TopStack projection=[Max Intensity]"); 
-
 }
 
-macro "GetSubstack [F2]"{
+macro "AIP_4_slices [F2]"{
+ Dialog.create("Merge Channels");
+ Dialog.addString("Bottom stack:", "16");
+ Dialog.show();
+ BottomStack = parseInt(Dialog.getString())
+ TopStack =  BottomStack+3
+ //
+ msg = "select image, then click \"OK\".";
+ waitForUser("pick", msg);
+ id=getImageID();
+ selectImage(id);
+ run("Z Project...", "start=BottomStack stop=TopStack projection=[Average Intensity]"); 
+}
+
+macro "Get_slices [F2]"{
 
  Dialog.create("Merge Channels");
  Dialog.addString("Bottom stack:", "16");
@@ -30,21 +40,19 @@ macro "GetSubstack [F2]"{
  id=getImageID();
  selectImage(id);
  run("Slice Keeper", "first=BottomStack last=TopStack increment=1");
- //run("Z Project...", "projection=[Max Intensity]");
- //close();
+ close();
 }
 
-macro "GetMIP [F3]"{
+macro "Get_MIP [F3]"{
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
  selectImage(id);
- //run("Slice Keeper", "first=19 last=38 increment=1");
  run("Z Project...", "projection=[Max Intensity]");
- //close();
+ close();
 }
 
-macro "GetROI [F4]"{
+macro "Get_ROI [F4]"{
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
@@ -124,40 +132,4 @@ macro "GetMeanIP [F7]"{
  //close();
 }
 
-macro "AIP3stacks [F8]"{
 
- Dialog.create("Merge Channels");
- Dialog.addString("Bottom stack:", "16");
- Dialog.show();
- BottomStack = parseInt(Dialog.getString())
- TopStack =  BottomStack+3
- 
- msg = "select image, then click \"OK\".";
- waitForUser("pick", msg);
- id=getImageID();
- //selectImage(id);
- //run("Slice Keeper", "first=BottomStack last=TopStack increment=1");
- selectImage(id);
- run("Z Project...", "start=BottomStack stop=TopStack projection=[Average Intensity]"); 
-
-}
-
-
-macro "Name ROI [F9]"{
-	
- counts=roiManager("count");
- 
- for(i=0; i<counts; i++) {
-
-    roiManager("Select", i);
-    name = "C"+i+1;
-    roiManager("Rename", name);
-         
- }
-
-
- roiManager("Select", counts-1);
- name = "B";
- roiManager("Rename", name);
-         
-}
