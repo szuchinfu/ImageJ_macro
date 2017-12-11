@@ -1,4 +1,4 @@
-macro "MIP_4_slices [F1]"{
+macro "MIP_4slices [F1]"{
  Dialog.create("Merge Channels");
  Dialog.addString("Bottom stack:", "16");
  Dialog.show();
@@ -12,7 +12,7 @@ macro "MIP_4_slices [F1]"{
  run("Z Project...", "start=BottomStack stop=TopStack projection=[Max Intensity]"); 
 }
 
-macro "AIP_4_slices [F2]"{
+macro "AIP_4slices [F2]"{
  Dialog.create("Merge Channels");
  Dialog.addString("Bottom stack:", "16");
  Dialog.show();
@@ -26,7 +26,7 @@ macro "AIP_4_slices [F2]"{
  run("Z Project...", "start=BottomStack stop=TopStack projection=[Average Intensity]"); 
 }
 
-macro "Get_slices [F2]"{
+macro "Get_slices [F3]"{
 
  Dialog.create("Merge Channels");
  Dialog.addString("Bottom stack:", "16");
@@ -43,7 +43,7 @@ macro "Get_slices [F2]"{
  close();
 }
 
-macro "Get_MIP [F3]"{
+macro "Get_MIP [F4]"{
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
@@ -52,7 +52,7 @@ macro "Get_MIP [F3]"{
  close();
 }
 
-macro "Get_ROI [F4]"{
+macro "Get_ROI [F5]"{
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
@@ -72,7 +72,8 @@ macro "Get_ROI [F4]"{
  close();
 }
  
-macro "EnlargeROI [F5]"{
+macro "EnlargeROI [F6]"{
+ run("Set Scale...", "distance=4.935834155972359 known=1 pixel=1 unit=micorn global");
  counts=roiManager("count");
  for(i=0; i<counts; i++) {
 
@@ -109,27 +110,6 @@ macro "EnlargeROI [F5]"{
 
  //roiManager("Deselect");
  //roiManager("Measure");
-}
-
-macro "GetMIP [F6]"{
- msg = "select image, then click \"OK\".";
- waitForUser("pick", msg);
- id=getImageID();
- selectImage(id);
- //run("Slice Keeper", "first=19 last=38 increment=1");
- run("Z Project...", "projection=[Min Intensity]");
- //close();
-}
-
-
-macro "GetMeanIP [F7]"{
- msg = "select image, then click \"OK\".";
- waitForUser("pick", msg);
- id=getImageID();
- selectImage(id);
- //run("Slice Keeper", "first=19 last=38 increment=1");
- run("Z Project...", "projection=[Average Intensity]");
- //close();
 }
 
 
