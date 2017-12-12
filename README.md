@@ -1,4 +1,4 @@
-# ImageJ macros
+ImageJ macros
 ====================
 Szu-Chin Fu
 
