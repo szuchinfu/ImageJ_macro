@@ -4,7 +4,6 @@ macro "MIP_4slices [F1]"{
  Dialog.show();
  BottomStack = parseInt(Dialog.getString())
  TopStack =  BottomStack+3
- // 
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
@@ -18,7 +17,6 @@ macro "AIP_4slices [F2]"{
  Dialog.show();
  BottomStack = parseInt(Dialog.getString())
  TopStack =  BottomStack+3
- //
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
@@ -36,15 +34,11 @@ macro "Get_ROI [F3]"{
  run("Gaussian Blur...", "sigma=3");
  setAutoThreshold("Default dark");
 
- //run("Threshold..."); 
  setAutoThreshold("Default dark");
  setOption("BlackBackground", false);
  run("Convert to Mask");
  run("Watershed");
- //run("Analyze Particles...", "size=30-Infinity circularity=0-1.00 show=Outlines display exclude clear summarize record add");
  run("Analyze Particles...", "size=30-Infinity circularity=0-1.00 show=Outlines exclude clear record add");
- //roiManager("Show All with labels");
- //roiManager("Show All");
  selectWindow("duplicate.TIF");
  close();
  selectWindow("Drawing of duplicate.TIF");
@@ -58,14 +52,11 @@ macro "EnlargeROI [F4]"{
  run("Set Scale...", "distance=4.935834155972359 known=1 pixel=1 unit=micorn global");
  counts=roiManager("count");
  for(i=0; i<counts; i++) {
-
     roiManager("Select", i);
     run("Enlarge...", "enlarge=0.47");
-    //run("Enlarge...", "enlarge=0.05");
     roiManager("Add");
     roiManager("Select", i);
     run("Enlarge...", "enlarge=0.62");
-    //run("Enlarge...", "enlarge=0.07");
     roiManager("Add");
 
     inner=i+counts;
@@ -87,9 +78,5 @@ macro "EnlargeROI [F4]"{
     roiManager("Select", ROI_jump);
     name = "C"+i+1;
     roiManager("Rename", name);
-
  }
-
- //roiManager("Deselect");
- //roiManager("Measure");
 }
