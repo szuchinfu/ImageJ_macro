@@ -26,40 +26,16 @@ macro "AIP_4slices [F2]"{
  run("Z Project...", "start=BottomStack stop=TopStack projection=[Average Intensity]"); 
 }
 
-macro "Get_slices [F3]"{
-
- Dialog.create("Merge Channels");
- Dialog.addString("Bottom stack:", "16");
- Dialog.addString("Top stack:", "32");
- Dialog.show();
- BottomStack = Dialog.getString();
- TopStack = Dialog.getString();
- 
+macro "Get_ROI [F3]"{
  msg = "select image, then click \"OK\".";
  waitForUser("pick", msg);
  id=getImageID();
  selectImage(id);
- run("Slice Keeper", "first=BottomStack last=TopStack increment=1");
- close();
-}
-
-macro "Get_MIP [F4]"{
- msg = "select image, then click \"OK\".";
- waitForUser("pick", msg);
- id=getImageID();
- selectImage(id);
- run("Z Project...", "projection=[Max Intensity]");
- close();
-}
-
-macro "Get_ROI [F5]"{
- msg = "select image, then click \"OK\".";
- waitForUser("pick", msg);
- id=getImageID();
- selectImage(id);
+ run("Duplicate...", "title=[duplicate.TIF]");
  run("ROI Manager...");
  run("Gaussian Blur...", "sigma=3");
  setAutoThreshold("Default dark");
+
  //run("Threshold..."); 
  setAutoThreshold("Default dark");
  setOption("BlackBackground", false);
@@ -67,12 +43,18 @@ macro "Get_ROI [F5]"{
  run("Watershed");
  //run("Analyze Particles...", "size=30-Infinity circularity=0-1.00 show=Outlines display exclude clear summarize record add");
  run("Analyze Particles...", "size=30-Infinity circularity=0-1.00 show=Outlines exclude clear record add");
+ //roiManager("Show All with labels");
+ //roiManager("Show All");
+ selectWindow("duplicate.TIF");
+ close();
+ selectWindow("Drawing of duplicate.TIF");
+ close();
+ selectImage(id);
  roiManager("Show All with labels");
  roiManager("Show All");
- close();
 }
  
-macro "EnlargeROI [F6]"{
+macro "EnlargeROI [F4]"{
  run("Set Scale...", "distance=4.935834155972359 known=1 pixel=1 unit=micorn global");
  counts=roiManager("count");
  for(i=0; i<counts; i++) {
@@ -111,5 +93,3 @@ macro "EnlargeROI [F6]"{
  //roiManager("Deselect");
  //roiManager("Measure");
 }
-
-
