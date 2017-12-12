@@ -2,7 +2,9 @@ ImageJ macros
 ====================
 Szu-Chin Fu
 
-ImageJ macros for quantitation of nuclear export activity in cells.
+Simple imageJ macros for ImageJ/FIJI that I am using for quantitation of nuclear export activity in cells.
+
+Summary:
 * [F1] Making max intensity projection for z-stacks (total: 4 slices). 
   * Input: the bottom stack.
 * [F2] Making average intensity projection for z-stacks (total: 4 slices). 
