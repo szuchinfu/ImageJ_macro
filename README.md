@@ -19,3 +19,4 @@ Steps:
 6. Generate cytoplasmic "ring" ROI(s) using [F4].
 7. Measure nuclear and cytoplasmic YFP intensity respectively.
 ![fig_1](https://user-images.githubusercontent.com/10090315/33915255-fd1e5ed2-df67-11e7-9176-97d2be34d699.jpg)
+8. Select a proper region *e.g.* a region without any cell for background backgound reading. 
