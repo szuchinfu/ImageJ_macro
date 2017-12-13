@@ -18,4 +18,4 @@ Steps:
 5. Remove unwanted nuclear ROIs *e.g.* untransfected cells.
 6. Generate cytoplasmic "ring" ROI(s) using [F4].
 7. Measure nuclear and cytoplasmic YFP intensity respectively.
-https://user-images.githubusercontent.com/10090315/33915255-fd1e5ed2-df67-11e7-9176-97d2be34d699.jpg
+![fig_1](https://user-images.githubusercontent.com/10090315/33915255-fd1e5ed2-df67-11e7-9176-97d2be34d699.jpg)
